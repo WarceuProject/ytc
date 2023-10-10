@@ -1,0 +1,6 @@
+tmp/*
+node_modules
+.git
+*.log
+*-lock.json
+dl.sh
