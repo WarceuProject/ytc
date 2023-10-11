@@ -37,7 +37,6 @@ const xlog = {
     }
 };
 
-
 function Ytdlp() {
     const args = arguments.length > 1 ? Array.from(arguments) : arguments[0]?.split(" ");
     const cmd = env.YTDLP;
@@ -296,7 +295,7 @@ class LintxMPDL {
 
         const mediaBuffer = fs.readFileSync(filePath);
         const mediaBinary = mediaBuffer.toString("base64") || Buffer.from([null]);
-        const mediaSize = cp.execSync(`ls -lh ./tmp | grep media-cache.${isVideo ? videoFormat : audioFormat} | awk '{ print $5 }'`).toString().trim() || "unknown";
+        const mediaSize = cp.execSync(`du -h ${filePath} | awk '{ print $1 }'`).toString().trim() || "unknown";
         const mediaBitrate = cp.execSync(`ffprobe -i ${filePath} 2>&1 | grep bitrate | awk '{ print $6 }'`).toString().trim().concat("kbps") || "unknown";
         const mediaBody = {
             binary: mediaBinary,
