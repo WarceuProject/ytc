@@ -6,10 +6,9 @@ const port = process.env.PORT || 2096;
 const LintxMPDL = require("./ytdlp");
 const morgan = require("morgan");
 const cp = require("child_process");
-const { log } = require("console");
 
 function serviceAlready() {
-    return cp.execSync(`ss -tulpn`).toString().trim().includes(`:${port}`);
+    return cp.execSync(`netstat -tulpn`).toString().trim().includes(`:${port}`);
 }
 
 // abort process when service already running
