@@ -39,7 +39,7 @@ const xlog = {
 
 function Ytdlp() {
     const args = arguments.length > 1 ? Array.from(arguments) : arguments[0]?.split(" ");
-    const cmd = env.YTDLP;
+    const cmd = path.join(__dirname, env.YTDLP);
     const noStdout = !!(args.includes("--no-stdout") && args.splice(args.indexOf("--no-stdout"), 1));
 
     xlog.info("\x1b[90m[ytdlp][spawn]\x1b[0m %s", [cmd].concat(args).join(" "));
